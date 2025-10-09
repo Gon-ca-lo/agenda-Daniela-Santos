@@ -51,7 +51,7 @@ header h1 { color: #ff007a; }
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 60px;
+  gap: 4rem;
   flex-wrap: wrap;
   max-width: 100%;
 }
@@ -81,7 +81,7 @@ header h1 { color: #ff007a; }
   position: relative;
   width: 10vw;
   min-width: 80px;
-  max-width: 200px;
+  max-width: 400px;
   height: 0.9em;
   background: #ddd;
   border-radius: 6px;
@@ -375,32 +375,51 @@ input, textarea, button, select {
   transition: none !important;
 }
 
+.title {
+  color: black;
+}
+
 /* Responsive adjustments (mostly automatic) */
-@media (max-width: 600px) {
+@media (max-width: 769px) {
+  :root { font-size: 15px; }
   .modal { width: 90%; padding: 1.5vh 3vw; }
   .calc-bar { width: 20vw; }
   header { flex-direction: column; text-align: center; gap: 1vh; }
   .header-right { flex-direction: column; gap: 1vh; }
   .calendar-grid { grid-template-columns: 15% repeat(7, 1fr); }
 }
-@media (max-width: 425px) {
+@media (max-width: 426px) {
+  :root { font-size: 14px; }
+  .calc-bar { width: 30vw; }
   .fab {
     width: 5rem;
     height: 5rem;
     font-size: 2.5rem;
   }
+  .grid-cell, .hour-cell {
+    font-size: 0.9rem;
+  }
 }
-@media (max-width: 375px) {
+@media (max-width: 376px) {
+  :root { font-size: 12px; }
   .fab {
     width: 4rem;
     height: 4rem;
     font-size: 2rem;
   }
+  .grid-cell, .hour-cell {
+    font-size: 0.8rem;
+  }
+
 }
-@media (max-width: 320px) {
+@media (max-width: 321px) {
+  :root { font-size: 12px; }
   .fab {
     width:3rem;
     height: 3rem;
     font-size: 1.5rem;
+  }
+  .grid-cell, .hour-cell {
+    font-size: 0.7rem;
   }
 }
