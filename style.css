@@ -65,6 +65,9 @@ header h1 { color: #ff007a; }
   border: none;
 }
 #installBtn:hover { transform: scale(1.1); }
+#installBtn.show-install {
+  display: inline-block;
+}
 
 /* === Progress bar === */
 .calc-nums {
