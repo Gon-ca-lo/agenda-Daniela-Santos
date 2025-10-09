@@ -410,16 +410,27 @@ const installBtn = document.getElementById('installBtn');
 window.addEventListener('beforeinstallprompt', (e) => {
   e.preventDefault();
   deferredPrompt = e;
-  installBtn.style.display = 'inline-block';
+
+  // Add class instead of using style directly
+  installBtn.classList.add('show-install');
 });
 
 if (installBtn) {
   installBtn.addEventListener('click', async () => {
     if (!deferredPrompt) return;
+
     deferredPrompt.prompt();
     const { outcome } = await deferredPrompt.userChoice;
     console.log('User response to install prompt:', outcome);
+
+    // Reset and hide button
     deferredPrompt = null;
-    installBtn.style.display = 'none';
+    installBtn.classList.remove('show-install');
   });
 }
+
+// Hide button if already installed (PWA)
+window.addEventListener('appinstalled', () => {
+  console.log('App installed');
+  installBtn.classList.remove('show-install');
+});
