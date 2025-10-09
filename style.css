@@ -56,7 +56,7 @@ header h1 { color: #ff007a; }
   max-width: 100%;
 }
 #installBtn {
-  display:none;
+  display: inline-block;
   cursor: pointer;
   border-radius: 10px;
   background-color: #065f46;
