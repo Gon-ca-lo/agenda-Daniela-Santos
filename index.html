@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agenda Semanal</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <link rel="manifest" href="./manifest.json">
+  <meta name="theme-color" content="#83263b">
+  <!-- iOS meta to make it behave like a standalone app -->
+  <meta name="apple-mobile-web-app-title" content="Agenda Semanal">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Agenda Semanal</h1>
+      <button id="installBtn">📲 Instalar App</button>
+      <div class="header-right">
+        <div class="calc">
+          <div class="calc-nums">
+            <span class="calc-num1"></span>
+            <span class="calc-num2"></span>
+          </div>
+          <div class="calc-bar"></div>
+        </div>
+        <div class="week-nav">
+          <button id="prevWeek">&lt;</button>
+          <span id="weekLabel"></span>
+          <button id="nextWeek">&gt;</button>
+        </div>
+      </div>
+    </header>
+
+    <div id="calendar" class="calendar-grid"></div>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+      <button id="openService" class="fab fab-service">+</button>
+      <button id="openFixed" class="fab fab-trabalho">+</button>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div id="overlay" class="overlay">
+    <div class="modal">
+      <button id="closeModal" class="close-btn">&times;</button>
+      <h2 id="modalTitle">Nova Marcação</h2>
+      <form id="eventForm">
+        <input type="hidden" id="eventId">
+
+        <div class="form-row vertical">
+          <label for="customerName">Cliente</label>
+          <input type="text" id="customerName" required>
+        </div>
+
+        <div class="form-row horizontal" id="sched-row">
+          <div class="form-group">
+            <label for="date">Data</label>
+            <input type="date" id="date" required>
+          </div>
+          <div class="form-group">
+            <label for="start">Começo</label>
+            <input type="time" id="start" required>
+          </div>
+          <div class="form-group">
+            <label for="end">Final</label>
+            <input type="time" id="end" required>
+          </div>
+        </div>
+        
+        <div class="form-row vertical" id="serviceRow">
+          <label>Serviço</label>
+          <div class="service-dropdown">
+            <details>
+              <summary><span class="toggle toggle-right"></span> Massagem</summary>
+              <ul>
+                <li data-value="Massagem Costas">Costas</li>
+                <li data-value="Massagem Corpo">Corpo</li>
+              </ul>
+            </details>
+            <details>
+              <summary><span class="toggle toggle-right"></span> Depilação</summary>
+              <ul>
+                <li data-value="Sobrancelha">Sobrancelha</li>
+                <li data-value="Buço">Buço</li>
+                <li data-value="Axilas">Axilas</li>
+                <li data-value="Braço">Braço</li>
+                <li data-value="Perna">Perna</li>
+                <li data-value="Meia Perna">Meia Perna</li>
+                <li data-value="Virilha">Virilha</li>
+                <li data-value="Virilha Cavada">Virilha Cavada</li>
+              </ul>
+            </details>
+            <details>
+              <summary><span class="toggle toggle-right"></span> Manicure</summary>
+              <ul>
+                <li data-value="Mani Gel">Gel</li>
+                <li data-value="Mani Soft Gel">Soft Gel</li>
+                <li data-value="Mani Molfe F1">Molfe F1</li>
+                <li data-value="Mani Verniz Gel">Verniz Gel</li>
+                <li data-value="Mani Simples">Simples</li>
+                <li data-value="Mani Remoção">Remoção</li>
+              </ul>
+            </details>
+            <details>
+              <summary><span class="toggle toggle-right"></span> Pedicure</summary>
+              <ul>
+                <li data-value="Pedi Verniz Gel">Verniz Gel</li>
+                <li data-value="Spa dos Pés">Spa dos Pés</li>
+                <li data-value="Pedi s/ Verniz">s/ Verniz</li>
+              </ul>
+            </details>
+          </div>
+        </div>
+
+        <div class="form-row horizontal form-footer">
+          <div class="form-group">
+            <label for="price">Preço</label>
+            <input type="text" id="price" value="€0">
+          </div>
+
+          <div class="form-actions">
+            <button type="button" id="deleteBtn">Apagar</button>
+            <button type="submit" id="saveBtn">Guardar</button>
+          </div>
+        </div>
+        <button type="button" id="checkBtn">✔ Validar Pagamento</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js')
+        .catch(err => console.warn('SW registration failed:', err));
+    }
+  </script>
+</body>
+</html>
