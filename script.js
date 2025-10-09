@@ -166,7 +166,7 @@ function renderEvents(){
     title.textContent=ev.customer||'';
     const meta=document.createElement('div');
     meta.className='meta';
-    meta.textContent=`${ev.service||'Trabalho'} — €${Number(ev.price||0).toFixed(2)}`;
+    meta.textContent=`${ev.service||'Trabalho'} (€${Number(ev.price||0).toFixed(2)})`;
 
     evNode.appendChild(title);
     evNode.appendChild(meta);
